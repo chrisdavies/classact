@@ -1,0 +1,17 @@
+<div class="list-filter">
+  <div class="input-group">
+    <label>Filter</label>
+    <input type="text" ng-model="query">
+  </div>
+</div>
+
+<table>
+  <tr ng-repeat="student in students | filter:query" ng-cloak>
+    <td class="student-profile">
+      <a href="#/students/{{student.login}}">
+        <img class="student-avatar" ng-src="{{student.avatar_url}}">
+        <span class="student-username">{{student.login}}</span>
+      </a>
+    </td>
+  </tr>
+</table>
