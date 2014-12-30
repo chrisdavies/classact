@@ -1,4 +1,4 @@
-app.controller('StudentShowCtrl', ['$scope', '$routeParams',
+app.controller('StudentsShowCtrl', ['$scope', '$routeParams',
   function ($scope, $routeParams) {
     'use strict';
 

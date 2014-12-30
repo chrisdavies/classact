@@ -37,6 +37,8 @@ var gulp = require('gulp'),
   glob = require('glob'),
   path = require('path'),
   Zombie = require('zombie'),
+  inject = require('gulp-inject'),
+  order = require('gulp-order'),
   colors = require('colors/safe');
 
 /********************************************************
@@ -76,37 +78,29 @@ gulp.task('css', function() {
 
 /* Process js and copy to the js build directory */
 gulp.task('js', function() {
-  gulp.src(['./src/js/**/*.js', '!./src/js/vendor/**/*.js'])
+  gulp.src('./src/**/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 
-  return gulp.src('./src/js/**/*.js')
-    .pipe(gulp.dest('./build/js'))
-    .pipe(connect.reload());
-});
-
-/* Process handlebars templates and build into html */
-gulp.task('hbs', function() {
-  var hbs = {
-    content: {},
-    options: {
-      helpers: gulp.src('./src/helpers/**/*.js'),
-      partials: gulp.src('./src/partials/**/*.hbs')
-    }
-  };
-
-  return gulp.src(['./src/**/*.hbs', '!./src/partials/**/*.hbs'])
-    .pipe(handlebars(hbs.content, hbs.options))
-    .pipe(rename({
-      extname: '.html'
-    }))
+  return gulp.src('./src/**/*.js')
     .pipe(gulp.dest('./build'))
     .pipe(connect.reload());
 });
 
 /* Move html into the build directory */
 gulp.task('html', function() {
-  return gulp.src('./src/**/*.html')
+
+  var angularJsFiles = gulp.src('./src/**/*.js')
+    order([
+      'src/app.js',
+      'src/**/*.js'
+    ]);
+
+  gulp.src('./src/index.html')
+    .pipe(inject(angularJsFiles, { relative: true }))
+    .pipe(gulp.dest('./build'));
+
+  return gulp.src(['./src/**/*.html', '!./src/index.html'])
     .pipe(gulp.dest('./build'))
     .pipe(connect.reload());
 });
@@ -136,7 +130,7 @@ gulp.task('releaseAssets', ['assets'], function() {
 /* Optimize JS files */
 gulp.task('minifyjs', ['js'], function() {
   if (!argv.minonly) {
-    return gulp.src('./build/js/**/*.js')
+    return gulp.src('./build/**/*.js')
       .pipe(uglify())
       .pipe(gulp.dest('./release/js'));
   }
@@ -152,7 +146,7 @@ gulp.task('minifycss', ['css'], function() {
 });
 
 /* Optimize HTML files */
-gulp.task('minifyhtml', ['releaseAssets', 'minifycss', 'minifyjs', 'hbs', 'html'], function() {
+gulp.task('minifyhtml', ['releaseAssets', 'minifycss', 'minifyjs', 'html'], function() {
   return gulp.src('./build/**/*.html')
     .pipe(usemin({
       css: [minifyCss(), 'concat', rev()],
@@ -182,7 +176,7 @@ gulp.task('default', ['serveBuild', 'build', 'watch']);
   'build' directory
 */
 gulp.task('build', ['cleanBuild'], function () {
-  return gulp.start('assets', 'js', 'css', 'hbs', 'html');
+  return gulp.start('assets', 'js', 'css', 'html');
 });
 
 /*
