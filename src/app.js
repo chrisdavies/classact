@@ -7,12 +7,12 @@ var app = (function () {
   app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/students', {
-        templateUrl: '/ng-views/student-index.html',
-        controller: 'StudentIndexCtrl'
+        templateUrl: '/students/students.html',
+        controller: 'StudentsCtrl'
       }).
       when('/students/:username', {
-        templateUrl: '/ng-views/student-show.html',
-        controller: 'StudentShowCtrl'
+        templateUrl: '/students/show/students-show.html',
+        controller: 'StudentsShowCtrl'
       }).
       otherwise({
         redirectTo: '/students'
