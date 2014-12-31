@@ -1,10 +1,5 @@
-app.controller('StudentsCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('StudentsCtrl', ['$scope', 'Students', function ($scope, Students) {
   'use strict';
 
-  $http.get('https://api.github.com/users').success(function (data) {
-    $scope.students = data;
-  }).error(function () {
-    alert('Ruh roh!');
-    console.log(arguments);
-  });
+  $scope.students = Students.query();
 }]);

@@ -91,10 +91,10 @@ gulp.task('js', function() {
 gulp.task('html', function() {
 
   var angularJsFiles = gulp.src('./src/**/*.js')
-    order([
+    .pipe(order([
       'src/app.js',
-      'src/**/*.js'
-    ]);
+      'src/components/**',
+    ]));
 
   gulp.src('./src/index.html')
     .pipe(inject(angularJsFiles, { relative: true }))
@@ -268,7 +268,6 @@ gulp.task('watchTests', ['test'], function () {
 gulp.task('watch', function() {
   gulp.watch(['./src/fonts/**/*', './src/img/**/*'], ['assets']);
   gulp.watch('./src/scss/**/*.scss', ['css']);
-  gulp.watch('./src/js/**/*.js', ['js']);
+  gulp.watch('./src/**/*.js', ['js']);
   gulp.watch('./src/**/*.html', ['html']);
-  gulp.watch('./src/**/*.hbs', ['hbs']);
 });
