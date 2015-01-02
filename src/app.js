@@ -13,7 +13,13 @@ var app = (function () {
 
     // This should run after all angular modules have been declared
     initialize: function () {
-      angular.module('app', dependencies);
+      angular.module('app', dependencies)
+        .config(function ($routeProvider) {
+          $routeProvider.otherwise({
+            controller: 'Error404Ctrl',
+            templateUrl: '/errors/404/error-404.html'
+          });
+        });
     }
   };
 })();
