@@ -1,7 +1,7 @@
 var app = (function () {
   'use strict';
 
-  /* The root angular application and namespace for our app */
+  // The root angular application and namespace for our app
   var app = angular.module('app', ['ngRoute', 'ngResource']);
 
   app.config(['$routeProvider', function($routeProvider) {
@@ -13,6 +13,10 @@ var app = (function () {
       when('/students/:username', {
         templateUrl: '/students/show/students-show.html',
         controller: 'StudentsShowCtrl'
+      }).
+      when('/assignments', {
+        templateUrl: '/assignments/assignments.html',
+        controller: 'AssignmentsCtrl'
       }).
       otherwise({
         redirectTo: '/students'
