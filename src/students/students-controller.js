@@ -48,7 +48,12 @@ app.module('appStudents', [])
     $scope.username = '';
 
     $scope.addStudent = function () {
-      $scope.studentInfo.usernames.push($scope.username);
+      if (!$scope.studentInfo.usernames.some(function (username) {
+        return username === $scope.username;
+      })) {
+        $scope.studentInfo.usernames.push($scope.username);
+      }
+      
       $scope.username = '';
       $scope.$emit('username-added');
     };
