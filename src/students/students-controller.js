@@ -36,6 +36,12 @@ app.module('appStudents', [])
         });
       }, true);
 
+      $scope.removeStudent = function (student) {
+        $scope.studentInfo.usernames = $scope.studentInfo.usernames.filter(function (username) {
+          return username !== student.login;
+        });
+      };
+
       $scope.students = [];
     }])
   .controller('AddStudentCtrl', ['$scope', 'Students', function ($scope, Stduents) {
