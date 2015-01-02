@@ -1,5 +1,15 @@
-app.controller('StudentsCtrl', ['$scope', 'Students', function ($scope, Students) {
-  'use strict';
-
-  $scope.students = Students.query();
-}]);
+app.module('appStudents', [])
+  .config(['$routeProvider', function($routeProvider) {
+    $routeProvider.when('/students', {
+        templateUrl: '/students/students.html',
+        controller: 'StudentsCtrl',
+        resolve: {
+          students: ['Students', function (Students) {
+            return Students.query();
+          }]
+        }
+      });
+  }])
+  .controller('StudentsCtrl', ['$scope', 'students', function ($scope, students) {
+    $scope.students = students;
+  }]);

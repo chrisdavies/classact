@@ -1,4 +1,4 @@
-app.controller('MainNavCtrl', ['$scope', '$document', '$location', 'StringUtil',
+app.module('master').controller('MainNavCtrl', ['$scope', '$document', '$location', 'StringUtil',
   function($scope, $document, $location, StringUtil) {
     $document.prop('title', 'TIYGH');
 

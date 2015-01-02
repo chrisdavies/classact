@@ -1,4 +1,4 @@
-app.factory('StringUtil', function() {
+app.module('factories').factory('StringUtil', function() {
   return {
     startsWith: function (str, subStr) {
       str = str || '';

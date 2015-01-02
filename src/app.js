@@ -1,27 +1,19 @@
 var app = (function () {
-  'use strict';
+  var dependencies = [
+    'ngRoute',
+    'ngResource'
+  ];
 
-  // The root angular application and namespace for our app
-  var app = angular.module('app', ['ngRoute', 'ngResource']);
+  return {
+    // Registers an angular module and auto-injects it as a dependency of app
+    module: function (name) {
+      dependencies.push(name);
+      return angular.module(name, []);
+    },
 
-  app.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.
-      when('/students', {
-        templateUrl: '/students/students.html',
-        controller: 'StudentsCtrl'
-      }).
-      when('/students/:username', {
-        templateUrl: '/students/show/students-show.html',
-        controller: 'StudentsShowCtrl'
-      }).
-      when('/assignments', {
-        templateUrl: '/assignments/assignments.html',
-        controller: 'AssignmentsCtrl'
-      }).
-      otherwise({
-        redirectTo: '/students'
-      });
-  }]);
-
-  return app;
+    // This should run after all angular modules have been declared
+    initialize: function () {
+      angular.module('app', dependencies);
+    }
+  };
 })();
