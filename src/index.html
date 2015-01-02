@@ -8,7 +8,7 @@
 <body>
 
   <nav class="main-nav" ng-controller="MainNavCtrl">
-    <a class="main-nav-link" ng-class="{active: isActive('/students')}" href="#/students">Home</a>
+    <a class="main-nav-link" ng-class="{active: isActive('/students') || isActive('/')}" href="#/students">Home</a>
     <a class="main-nav-link" ng-class="{active: isActive('/assignments')}" href="#/assignments">Assignments</a>
   </nav>
 
