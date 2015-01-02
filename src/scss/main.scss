@@ -2,6 +2,15 @@
 @import 'defaults';
 @import 'angular';
 
+.root-content {
+  padding: 2em;
+}
+
+.toolbar {
+  background: #F4F4F4;
+  padding: 1em;
+}
+
 .student-avatar {
   display: inline-block;
   vertical-align: middle;
@@ -17,6 +26,7 @@
 .main-nav {
   background: #6067b0;
   color: #FFF;
+  padding: 0 2em;
 }
 
 .main-nav-link {

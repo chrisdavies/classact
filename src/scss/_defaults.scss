@@ -28,3 +28,18 @@ a {
 td {
   padding: 0.25em 0.5em;
 }
+
+input, textarea {
+  font-size: 1em;
+  border: 1px solid #DDD;
+  padding: 0.25em;
+}
+
+button {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  border: 0;
+  background: #AAA;
+  color: #FFF;
+  font-size: 1em;
+}

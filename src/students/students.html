@@ -1,6 +1,6 @@
-<form class="students" ng-controller="AddStudentCtrl" ng-submit="addStudent()">
-  <input type="text" ng-model="username" focus-on="username-added">
-  <button type="submit">+ Add Student</button>
+<form class="add-student toolbar" ng-controller="AddStudentCtrl" ng-submit="addStudent()">
+  <input type="text" placeholder="username" ng-model="username" focus-on="username-added">
+  <button type="submit">+ Add</button>
 </form>
 
 <div class="list-filter">
@@ -11,7 +11,7 @@
 </div>
 
 <table>
-  <tr ng-repeat="student in students | filter:query" ng-cloak>
+  <tr ng-repeat="student in students | filter:query | orderBy: 'login'" ng-cloak>
     <td class="student-profile">
       <a href="#/students/{{student.login}}">
         <img class="student-avatar" ng-src="{{student.avatar_url}}">
