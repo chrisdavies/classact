@@ -1,4 +1,4 @@
-app.module('appStudents', [])
+app.module('appStudents')
   .config(['$routeProvider', function($routeProvider) {
 
     var routeDefinition = {
