@@ -1,4 +1,17 @@
-<h1>TODO: Assignments</h1>
-<p>
-  {{message}}
-</p>
+<form class="assignment-form toolbar" ng-submit="assignment.fetch()">
+  <input type="text" placeholder="assignment name" ng-model="assignment.name">
+  <button type="submit">Go</button>
+</form>
+
+<ul class="student-list">
+  <li class="student-list-item" ng-repeat="student in students | filter:query | orderBy: 'login'" ng-cloak>
+    <span class="student-profile">
+      <a href="#/students/{{student.login}}">
+        <img class="student-avatar" ng-src="{{student.avatar_url}}">
+        <span class="student-username">{{student.login}}</span>
+      </a>
+    </span>
+    <a ng-if="student.repo" target="_blank" ng-href="{{student.repo.html_url}}">Repo</a>
+    <a ng-if="student.repo.has_pages" target="_blank" href="{{student.repo.gh_pages_url}}">GH-Pages</a>
+  </li>
+</ul>
