@@ -5,13 +5,8 @@ app.module('appStudents', [])
       templateUrl: '/students/students.html',
       controller: 'StudentsCtrl',
       resolve: {
-        usernames: ['LocalStore', '$log', function (LocalStore, $log) {
-          return LocalStore.load('studentInfo.usernames').catch(function (ex) {
-            $log.log(ex);
-            return [];
-          }).then(function (usernames) {
-            return usernames;
-          });
+        usernames: ['StudentsStore', function (StudentsStore) {
+          return StudentsStore.loadUsernames();
         }]
       }
     };
@@ -19,8 +14,8 @@ app.module('appStudents', [])
     $routeProvider.when('/', routeDefinition);
     $routeProvider.when('/students', routeDefinition);
   }])
-  .controller('StudentsCtrl', ['$scope', '$log', 'LocalStore', 'Students', '$q', 'usernames',
-    function ($scope, $log, LocalStore, Students, $q, usernames) {
+  .controller('StudentsCtrl', ['$scope', '$log', 'LocalStore', 'Students', 'usernames',
+    function ($scope, $log, LocalStore, Students, usernames) {
       var usernamesKey = 'studentInfo.usernames';
 
       $scope.studentInfo = {
@@ -28,9 +23,7 @@ app.module('appStudents', [])
       };
 
       $scope.$watch(usernamesKey, function () {
-        return $q.all($scope.studentInfo.usernames.map(function (username) {
-          return Students.get({ username: username }).$promise;
-        })).then(function (students) {
+        return Students.query({ usernames: $scope.studentInfo.usernames }).then(function (students) {
           $scope.students = students;
           return LocalStore.save(usernamesKey, $scope.studentInfo.usernames);
         });
@@ -53,7 +46,7 @@ app.module('appStudents', [])
       })) {
         $scope.studentInfo.usernames.push($scope.username);
       }
-      
+
       $scope.username = '';
       $scope.$emit('username-added');
     };
