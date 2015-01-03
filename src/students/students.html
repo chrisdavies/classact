@@ -3,13 +3,6 @@
   <button type="submit">+ Add</button>
 </form>
 
-<div class="list-filter">
-  <div class="input-group">
-    <label>Filter</label>
-    <input type="text" ng-model="query">
-  </div>
-</div>
-
 <ul class="student-list">
   <li class="student-list-item" ng-repeat="student in students | filter:query | orderBy: 'login'" ng-cloak>
     <span class="student-profile">

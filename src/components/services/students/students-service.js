@@ -8,5 +8,10 @@ app.module('services').factory('Students', ['$resource', '$q', function($resourc
     }));
   };
 
+  // Get the events for a student
+  service.events = function (spec) {
+    return $resource('https://api.github.com/users/:username/events').query(spec).$promise;
+  };
+
   return service;
 }]);

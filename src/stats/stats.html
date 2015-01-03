@@ -1,0 +1,18 @@
+
+<div class="filter-students toolbar">
+  <input type="text" placeholder="search" ng-model="query">
+</div>
+
+<ul class="student-list">
+  <li class="student-list-item" ng-repeat="student in studentInfo.students | filter:query | orderBy: 'login'" ng-cloak>
+    <span class="student-profile">
+      <a href="#/students/{{student.login}}">
+        <img class="student-avatar" ng-src="{{student.avatar_url}}">
+        <span class="student-username">{{student.login}}</span>
+      </a>
+    </span>
+    <span class="last-activity" ng-repeat="event in student.events | limitTo:1">
+      {{event.created_at | date:'short'}}
+    </span>
+  </li>
+</ul>
