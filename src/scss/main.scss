@@ -1,6 +1,18 @@
 @import 'reset';
+@import 'fonts';
 @import 'defaults';
 @import 'angular';
+
+$bg-color: #FFF;
+$alt-bg-color: #F4F4F4;
+
+$bold-color: #E84E01;
+$alt-bold-color: #4F9EE5;
+
+$accent-color: #6067B0;
+$accent-color-dark: #4d5196;
+$alt-accent-color: #54CC14;
+$alt-accent-color-dark: #44B209;
 
 .root-content {
   padding: 2em;
@@ -29,9 +41,23 @@
   padding: 0 2em;
 }
 
+.app-icon {
+  color: inherit;
+}
+
+.app-icon:before {
+  content: 'b';
+  font-family: 'fontastic';
+  display: inline-block;
+  font-size: 2.5em;
+  padding-right: 0.5rem;
+  vertical-align: middle;
+  transform: rotate(-10deg);
+}
+
 .main-nav-link {
   display: inline-block;
-  padding: 0.5em 1em;
+  padding: 1em 1em;
   color: inherit;
 }
 
