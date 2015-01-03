@@ -10,16 +10,16 @@
   </div>
 </div>
 
-<table>
-  <tr ng-repeat="student in students | filter:query | orderBy: 'login'" ng-cloak>
-    <td class="student-profile">
+<ul class="student-list">
+  <li class="student-list-item" ng-repeat="student in students | filter:query | orderBy: 'login'" ng-cloak>
+    <span class="student-profile">
       <a href="#/students/{{student.login}}">
         <img class="student-avatar" ng-src="{{student.avatar_url}}">
         <span class="student-username">{{student.login}}</span>
       </a>
-    </td>
-    <td>
+    </span>
+    <span class="list-actions">
       <button class="remove-student" ng-click="removeStudent(student)">x</button>
-    </td>
-  </tr>
-</table>
+    </span>
+  </li>
+</ul>
