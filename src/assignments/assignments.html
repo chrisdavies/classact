@@ -4,7 +4,7 @@
 </form>
 
 <ul class="student-list">
-  <li class="student-list-item" ng-repeat="student in students | filter:query | orderBy: 'login'" ng-cloak>
+  <li class="student-list-item" ng-class="{valid: student.repo.has_pages}" ng-repeat="student in students | filter:query | orderBy: 'login'" ng-cloak>
     <span class="student-profile">
       <a href="#/students/{{student.login}}">
         <img class="student-avatar" ng-src="{{student.avatar_url}}">

@@ -10,7 +10,7 @@ app.module('appAssignments', [])
       }
     });
   }])
-  .controller('AssignmentsCtrl', ['$scope', 'Students', 'usernames', 'Repos', function ($scope, Students, usernames, Repos) {
+  .controller('AssignmentsCtrl', ['$scope', 'Students', 'usernames', 'Repos', '$q', '$log', function ($scope, Students, usernames, Repos, $q, $log) {
     var assignment = $scope.assignment = {
       name: '',
       fetch: fetchAssignment
@@ -18,14 +18,16 @@ app.module('appAssignments', [])
 
     function fetchAssignment() {
       Students.query({ usernames: usernames }).then(function (students) {
-        $scope.students = students;
-        return students;
-      }).then(function (students) {
-        students.map(function (student) {
+        $q.all(students.map(function (student) {
           return Repos.get({ username: student.login, repo: assignment.name }).$promise.then(function (repo) {
             student.repo = repo;
             return student;
+          }).catch(function (ex) {
+            $log.log(ex);
+            return student;
           });
+        })).then(function (students) {
+          $scope.students = students;
         });
       });
     }
