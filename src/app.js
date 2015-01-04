@@ -23,7 +23,7 @@ var app = (function () {
         .config(['$routeProvider', function ($routeProvider) {
           $routeProvider.otherwise({
             controller: 'Error404Ctrl',
-            templateUrl: '/errors/404/error-404.html'
+            templateUrl: 'errors/404/error-404.html'
           });
         }]);
     }

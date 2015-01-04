@@ -1,7 +1,7 @@
 app.module('appStats')
   .config(['$routeProvider', function($routeProvider) {
     var routeDefinition = {
-      templateUrl: '/stats/stats.html',
+      templateUrl: 'stats/stats.html',
       controller: 'StatsCtrl',
       resolve: {
         students: ['StudentsStore', 'Students', '$log', '$q', function (StudentsStore, Students, $log, $q) {

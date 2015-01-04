@@ -1,7 +1,7 @@
 app.module('appAssignments')
   .config(['$routeProvider', function($routeProvider) {
     var controller = {
-      templateUrl: '/assignments/assignments.html',
+      templateUrl: 'assignments/assignments.html',
       controller: 'AssignmentsCtrl',
       resolve: {
         usernames: ['StudentsStore', function (StudentsStore) {

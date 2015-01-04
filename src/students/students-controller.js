@@ -1,7 +1,7 @@
 app.module('appStudents')
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/students', {
-      templateUrl: '/students/students.html',
+      templateUrl: 'students/students.html',
       controller: 'StudentsCtrl',
       resolve: {
         usernames: ['StudentsStore', function (StudentsStore) {
