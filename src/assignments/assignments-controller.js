@@ -26,7 +26,7 @@ app.module('appAssignments')
     function loadAssignment() {
       Students.query({ usernames: usernames }).then(function (students) {
         $q.all(students.map(function (student) {
-          return Repos.get({ username: student.username, repo: assignment.name }).$promise.then(function (repo) {
+          return Repos.get({ username: student.username, repo: assignment.name }).then(function (repo) {
             student.repo = repo;
             return student;
           }).catch(function (ex) {
