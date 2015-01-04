@@ -60,13 +60,17 @@ gulp.task('cleanBuild', function(cb) {
 });
 
 /* Copy static assets to the build directory */
-gulp.task('assets', function() {
-  gulp.src('./src/fonts/**/*')
+gulp.task('fonts', function () {
+  return gulp.src('./src/fonts/**/*')
     .pipe(gulp.dest('./build/fonts'));
+});
 
-  gulp.src('./src/img/**/*')
+gulp.task('img', function () {
+  return gulp.src('./src/img/**/*')
     .pipe(gulp.dest('./build/img'));
 });
+
+gulp.task('assets', ['fonts', 'img']);
 
 /* Process scss and copy to the css build directory */
 gulp.task('css', function() {
