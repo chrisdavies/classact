@@ -1,1 +1,0 @@
-var app=function(){var r={ngRoute:!0,ngResource:!0};return{module:function(e){return r[e]?angular.module(e):(r[e]=!0,angular.module(e,[]))},initialize:function(){angular.module("app",Object.keys(r)).config(["$routeProvider",function(r){r.otherwise({controller:"Error404Ctrl",templateUrl:"/errors/404/error-404.html"})}])}}}();

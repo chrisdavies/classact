@@ -1,1 +1,0 @@
-app.module("directives").directive("focusOn",function(){return function(n,c,o){n.$on(o.focusOn,function(){c[0].focus()})}});
