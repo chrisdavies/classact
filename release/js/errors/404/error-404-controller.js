@@ -1,0 +1,1 @@
+app.module("appErrors").controller("Error404Ctrl",["$scope","$location",function(o,r){o.message="Could not find: "+r.url()}]);

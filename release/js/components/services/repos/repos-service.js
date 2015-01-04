@@ -1,0 +1,1 @@
+app.module("services").factory("Repos",["$resource","$q",function(e){var r=e("https://api.github.com/repos/:username/:repo");return{get:function(e){return r.get(e).$promise.then(function(r){return{hasPages:r.has_pages,htmlUrl:r.html_url,ghPagesUrl:"http://"+e.username+".github.io/"+e.repo}})}}}]);
