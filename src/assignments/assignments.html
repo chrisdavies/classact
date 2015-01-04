@@ -1,17 +1,23 @@
-<form class="assignment-form toolbar" ng-submit="assignment.fetch()">
+<form class="assignment-form toolbar" ng-submit="assignment.goto()">
   <input type="text" placeholder="assignment name" ng-model="assignment.name">
   <button type="submit">Go</button>
 </form>
 
 <ul class="student-list">
-  <li class="student-list-item" ng-class="{valid: student.repo.has_pages}" ng-repeat="student in students | filter:query | orderBy: 'login'" ng-cloak>
+  <li class="student-list-item student-list-header">
+    <span class="title">Student</span>
+    <span class="title">Homework</span>
+  </li>
+  <li class="student-list-item" ng-class="{valid: student.repo.has_pages}" ng-repeat="student in students | filter:query | orderBy: 'username'" ng-cloak>
     <span class="student-profile">
-      <a href="#/students/{{student.login}}">
-        <img class="student-avatar" ng-src="{{student.avatar_url}}">
-        <span class="student-username">{{student.login}}</span>
+      <a href="{{student.htmlUrl}}" target="_blank">
+        <img class="student-avatar" ng-src="{{student.avatarUrl}}">
+        <span class="student-username">{{student.name || student.username}}</span>
       </a>
     </span>
-    <a ng-if="student.repo" target="_blank" ng-href="{{student.repo.html_url}}">Repo</a>
-    <a ng-if="student.repo.has_pages" target="_blank" href="{{student.repo.gh_pages_url}}">GH-Pages</a>
+    <span class="student-repos">
+      <a class="student-repo" ng-if="student.repo" target="_blank" ng-href="{{student.repo.htmlUrl}}">Repo</a>
+      <a class="student-repo" ng-if="student.repo.hasPages" target="_blank" href="{{student.repo.ghPagesUrl}}">GH-Pages</a>
+    </span>
   </li>
 </ul>

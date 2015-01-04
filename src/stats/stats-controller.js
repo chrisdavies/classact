@@ -9,8 +9,9 @@ app.module('appStats')
             return Students.query({ usernames: usernames });
           }).then(function (students) {
             return $q.all(students.map(function (student) {
-              return Students.events({ username: student.login }).then(function (events) {
+              return Students.events(student).then(function (events) {
                 student.events = events;
+                student.latestEvent = events.length ? events[0] : undefined;
                 return student;
               }).catch(function (err) {
                 $log.log(err);

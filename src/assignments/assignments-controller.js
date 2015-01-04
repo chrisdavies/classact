@@ -1,6 +1,6 @@
-app.module('appAssignments', [])
+app.module('appAssignments')
   .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/assignments', {
+    var controller = {
       templateUrl: '/assignments/assignments.html',
       controller: 'AssignmentsCtrl',
       resolve: {
@@ -8,18 +8,25 @@ app.module('appAssignments', [])
           return StudentsStore.loadUsernames();
         }]
       }
-    });
-  }])
-  .controller('AssignmentsCtrl', ['$scope', 'Students', 'usernames', 'Repos', '$q', '$log', function ($scope, Students, usernames, Repos, $q, $log) {
-    var assignment = $scope.assignment = {
-      name: '',
-      fetch: fetchAssignment
     };
 
-    function fetchAssignment() {
+    $routeProvider.when('/assignments/:assignment', controller);
+    $routeProvider.when('/assignments', controller);
+  }])
+  .controller('AssignmentsCtrl', ['$scope', 'Students', 'usernames', 'Repos', '$q', '$log', '$routeParams', '$location', function ($scope, Students, usernames, Repos, $q, $log, $routeParams, $location) {
+    var assignment = $scope.assignment = {
+      name: $routeParams.assignment || '',
+      goto: function () {
+        $location.path('/assignments/' + assignment.name);
+      }
+    };
+
+    assignment.name && loadAssignment();
+
+    function loadAssignment() {
       Students.query({ usernames: usernames }).then(function (students) {
         $q.all(students.map(function (student) {
-          return Repos.get({ username: student.login, repo: assignment.name }).$promise.then(function (repo) {
+          return Repos.get({ username: student.username, repo: assignment.name }).$promise.then(function (repo) {
             student.repo = repo;
             return student;
           }).catch(function (ex) {

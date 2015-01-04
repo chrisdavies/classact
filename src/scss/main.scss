@@ -14,6 +14,14 @@ $accent-color-dark: #4d5196;
 $alt-accent-color: #54CC14;
 $alt-accent-color-dark: #44B209;
 
+a {
+  color: $alt-bold-color;
+}
+
+a:hover {
+  color: $alt-accent-color;
+}
+
 .root-content {
   padding: 2em;
 }
@@ -21,18 +29,7 @@ $alt-accent-color-dark: #44B209;
 .toolbar {
   background: #F4F4F4;
   padding: 1em;
-}
-
-.student-avatar {
-  display: inline-block;
-  vertical-align: middle;
-  max-width: 3em;
-  max-height: 3em;
-}
-
-.student-username {
-  display: inline-block;
-  vertical-align: middle;
+  margin-bottom: 1.5em;
 }
 
 .main-nav {
@@ -61,6 +58,63 @@ $alt-accent-color-dark: #44B209;
   color: inherit;
 }
 
+.main-nav-link:hover {
+  background: $alt-accent-color;
+  color: inherit;
+}
+
 .main-nav-link.active {
   background: #4d5196;
+}
+
+.student-list {
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.student-list-item {
+  border-bottom: 1px solid #EEE;
+  padding: 1em;
+}
+
+.student-list-header .title {
+  text-transform: uppercase;
+  color: #CCC;
+}
+
+.student-list-header .title:first-child,
+.student-profile {
+  display: inline-block;
+  width: 10em;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-right: 1em;
+}
+
+.student-repo {
+  display: inline-block;
+  margin-right: 1em;
+  vertical-align: middle;
+}
+
+.student-avatar {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 3em;
+  max-height: 3em;
+  border-radius: 3em;
+  margin-right: 1em;
+}
+
+.student-username {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.last-activity {
+  display: inline-block;
+  color: #999;
+  vertical-align: middle;
+  text-align: right;
 }
