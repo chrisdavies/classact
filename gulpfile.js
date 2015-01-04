@@ -39,7 +39,8 @@ var gulp = require('gulp'),
   Zombie = require('zombie'),
   inject = require('gulp-inject'),
   order = require('gulp-order'),
-  colors = require('colors/safe');
+  colors = require('colors/safe'),
+  deploy = require('gulp-gh-pages');
 
 /********************************************************
   Debug/build tasks
@@ -189,6 +190,14 @@ gulp.task('build', ['cleanBuild'], function () {
 */
 gulp.task('release', ['serveRelease', 'cleanBuild', 'cleanRelease'], function() {
   return gulp.start('minifyhtml');
+});
+
+/*
+  Deploy the release build to gh-pages
+*/
+gulp.task('deploy', function () {
+  return gulp.src('./release/**/*')
+    .pipe(deploy());
 });
 
 /*
