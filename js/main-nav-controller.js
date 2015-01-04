@@ -1,0 +1,1 @@
+app.module("master").controller("MainNavCtrl",["$scope","$document","$location","StringUtil",function(t,i,n,o){i.prop("title","TIYGH"),t.isActive=function(t){return"/"===t?"/"===n.path():o.startsWith(n.path(),t)}}]);

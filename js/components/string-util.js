@@ -1,0 +1,1 @@
+app.module("factories").factory("StringUtil",function(){return{startsWith:function(t,n){return t=t||"",t.slice(0,n.length)===n}}});
