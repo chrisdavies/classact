@@ -1,0 +1,1 @@
+app.module("directives").directive("studentProfile",function(){return{restrict:"E",replace:!0,templateUrl:"shared/student-profile/student-profile.html",scope:{student:"="}}});
