@@ -1,0 +1,32 @@
+.student-profile {
+  display: inline-block;
+  width: 10em;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-right: 1em;
+}
+
+.student-avatar {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 3em;
+  max-height: 3em;
+  border-radius: 3em;
+  margin-right: 1em;
+}
+
+.student-username {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.student-repo + .student-repo {
+  margin-left: 0.5em;
+  padding-left: 0.5em;
+  border-left: 1px solid $alt-bold-color;
+}
+
+.last-activity {
+  color: #999;
+}

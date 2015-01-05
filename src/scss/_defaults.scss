@@ -21,8 +21,12 @@ p {
 }
 
 a {
-  color: #00AAEE;
+  color: $alt-bold-color;
   text-decoration: none;
+}
+
+a:hover {
+  color: $alt-accent-color;
 }
 
 td {
