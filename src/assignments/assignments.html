@@ -3,21 +3,12 @@
   <button type="submit">Go</button>
 </form>
 
-<ul class="student-list">
-  <li class="student-list-item student-list-header">
-    <span class="title">Student</span>
-    <span class="title">Homework</span>
-  </li>
-  <li class="student-list-item" ng-class="{valid: student.repo.has_pages}" ng-repeat="student in students | filter:query | orderBy: 'username'" ng-cloak>
-    <span class="student-profile">
-      <a href="{{student.htmlUrl}}" target="_blank">
-        <img class="student-avatar" ng-src="{{student.avatarUrl}}">
-        <span class="student-username">{{student.name || student.username}}</span>
-      </a>
-    </span>
-    <span class="student-repos">
+<captioned-table cols="['Student', 'Homework']">
+  <li class="student-list-item captioned-table-row" ng-repeat="student in studentInfo.students | filter:query | orderBy: '-latestEvent.createdAt'">
+    <span class="captioned-table-cell"><student-profile student="student"></student-profile></span>
+    <span class="student-repos captioned-table-cell">
       <a class="student-repo" ng-if="student.repo" target="_blank" ng-href="{{student.repo.htmlUrl}}">Repo</a>
       <a class="student-repo" ng-if="student.repo.hasPages" target="_blank" href="{{student.repo.ghPagesUrl}}">GH-Pages</a>
     </span>
   </li>
-</ul>
+</captioned-table>

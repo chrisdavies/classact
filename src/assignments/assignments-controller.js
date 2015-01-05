@@ -21,6 +21,10 @@ app.module('appAssignments')
       }
     };
 
+    var studentInfo = $scope.studentInfo = {
+      students: []
+    };
+
     assignment.name && loadAssignment();
 
     function loadAssignment() {
@@ -34,7 +38,7 @@ app.module('appAssignments')
             return student;
           });
         })).then(function (students) {
-          $scope.students = students;
+          studentInfo.students = students;
         });
       });
     }

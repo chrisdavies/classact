@@ -67,22 +67,29 @@ a:hover {
   background: #4d5196;
 }
 
-.student-list {
-  display: inline-block;
-  box-sizing: border-box;
+// captioned-table: Table-like display that allows for responsive overrides
+.captioned-table {
+  display: table;
 }
 
-.student-list-item {
+.captioned-table-header-row,
+.captioned-table-row {
+  display: table-row;
+}
+
+.captioned-table-header-cell,
+.captioned-table-cell {
+  display: table-cell;
+  padding: 0.75em;
   border-bottom: 1px solid #EEE;
-  padding: 1em;
 }
 
-.student-list-header .title {
+.captioned-table-header-cell {
   text-transform: uppercase;
   color: #CCC;
 }
+// End cpationed-table
 
-.student-list-header .title:first-child,
 .student-profile {
   display: inline-block;
   width: 10em;
@@ -90,12 +97,6 @@ a:hover {
   overflow: hidden;
   vertical-align: middle;
   margin-right: 1em;
-}
-
-.student-repo {
-  display: inline-block;
-  margin-right: 1em;
-  vertical-align: middle;
 }
 
 .student-avatar {
@@ -112,9 +113,12 @@ a:hover {
   vertical-align: middle;
 }
 
+.student-repo + .student-repo {
+  margin-left: 0.5em;
+  padding-left: 0.5em;
+  border-left: 1px solid $alt-bold-color;
+}
+
 .last-activity {
-  display: inline-block;
   color: #999;
-  vertical-align: middle;
-  text-align: right;
 }

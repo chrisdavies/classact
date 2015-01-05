@@ -13,21 +13,20 @@ app.module('appStudents')
   .controller('StudentsCtrl', ['$scope', '$log', 'StudentsStore', 'Students', 'usernames',
     function ($scope, $log, StudentsStore, Students, usernames) {
       $scope.studentInfo = {
-        usernames: usernames
+        usernames: usernames,
+        students: []
       };
-
-      $scope.students = [];
 
       $scope.$watch('studentInfo.usernames', function () {
         return Students.query({ usernames: $scope.studentInfo.usernames }).then(function (students) {
-          $scope.students = students;
+          $scope.studentInfo.students = students;
           return StudentsStore.saveUsernames($scope.studentInfo.usernames);
         });
       }, true);
 
       $scope.removeStudent = function (student) {
         $scope.studentInfo.usernames = $scope.studentInfo.usernames.filter(function (username) {
-          return username !== student.login;
+          return username !== student.username;
         });
       };
     }])
